@@ -1,0 +1,14 @@
+<testsuite name="performance.PerformanceTestRunner" tests="4" errors="0" failures="0" time="0">
+<testcase name="POST /api/login: mean requests per second is between inclusive -5.0 and 17.0" status="true" time="0">
+  <system-out>POST /api/login: mean requests per second is between inclusive -5.0 and 17.0</system-out>
+</testcase>
+<testcase name="POST /api/login: percentage of failed events is less than or equal to 5.0" status="true" time="0">
+  <system-out>POST /api/login: percentage of failed events is less than or equal to 5.0</system-out>
+</testcase>
+<testcase name="POST /api/login: max of response time is less than 1500.0" status="true" time="0">
+  <system-out>POST /api/login: max of response time is less than 1500.0</system-out>
+</testcase>
+<testcase name="POST /api/login: count of successful events is greater than or equal to 100.0" status="true" time="0">
+  <system-out>POST /api/login: count of successful events is greater than or equal to 100.0</system-out>
+</testcase>
+</testsuite>
