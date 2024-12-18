@@ -1,0 +1,45 @@
+{
+  "simulation": "performance.PerformanceTestRunner",
+  "simulationId": "performancetestrunner-20240909182727328",
+  "start": 1725906447424,
+  "description": "",
+  "scenarios": ["test"],
+  "assertions": [
+{
+  "path": "POST /api/login",
+  "target": "mean requests per second",
+  "condition": "is between inclusive",
+  "expectedValues": [-5.0,17.0],
+  "result": true,
+  "message": "POST /api/login: mean requests per second is between inclusive -5.0 and 17.0",
+  "actualValue": [8.26086956521739]
+},
+{
+  "path": "POST /api/login",
+  "target": "percentage of failed events",
+  "condition": "is less than or equal to",
+  "expectedValues": [5.0],
+  "result": true,
+  "message": "POST /api/login: percentage of failed events is less than or equal to 5.0",
+  "actualValue": [0.0]
+},
+{
+  "path": "POST /api/login",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [1500.0],
+  "result": true,
+  "message": "POST /api/login: max of response time is less than 1500.0",
+  "actualValue": [1483.0]
+},
+{
+  "path": "POST /api/login",
+  "target": "count of successful events",
+  "condition": "is greater than or equal to",
+  "expectedValues": [100.0],
+  "result": true,
+  "message": "POST /api/login: count of successful events is greater than or equal to 100.0",
+  "actualValue": [190.0]
+}
+  ]
+}
