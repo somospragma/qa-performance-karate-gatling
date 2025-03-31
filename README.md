@@ -47,9 +47,6 @@ Redacta aca una breve descripcion del proyecto...
   <a href="#roadmap">Roadmap</a>
 </p>
 
-El siguiente GIF es de ejemplo, si tienes uno propio reemplazalo, de lo contrario eliminalo.
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
-
 ## Topicos
 
 * Java
