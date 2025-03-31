@@ -50,8 +50,7 @@ Redacta aca una breve descripcion del proyecto...
 ## Topicos
 
 * Java
-* Bases de datos
-* SQL
+* karate-gatling
 * Cucumber
 * Serenity
 * Selenium
@@ -59,6 +58,7 @@ Redacta aca una breve descripcion del proyecto...
 ## Tecnologias
 ### This project required:
 - [JDK java] version 16
+- [Karate] Version 1.5.0
 - [Serenity] version 4
 - [Gradle] last version
 
