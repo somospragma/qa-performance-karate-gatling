@@ -57,7 +57,6 @@ Este proyecto realiza pruebas de performance utilizando Karate junto con Gatling
 ### This project required:
 - [JDK java] version 16
 - [Karate] Version 1.5.0
-- [Serenity] version 4
 - [Gradle] last version
 
 
