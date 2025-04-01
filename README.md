@@ -8,7 +8,6 @@
 
 <h4 align="center">Proyecto base de <a href="https://github.com/karatelabs/karate" target="_blank">Pragma</a>.</h4>
 
-De aca en adelante encontraras las partes del readme con un pequeño ejemplo dentro de cada una de ellas, actualiza su contenido (no olvides borrar esta línea)
 
 <p align="center">
   <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">
@@ -63,6 +62,7 @@ Este proyecto realiza pruebas de performance utilizando Karate junto con Gatling
 
 
 ## Estructura del Proyecto
+```
   ├── src/
   │   ├── test/
   │   │   ├── java/
@@ -74,7 +74,7 @@ Este proyecto realiza pruebas de performance utilizando Karate junto con Gatling
   │   │   │   ├── karate-config.js           # Archivo de configuración global
   ├── build.gradle                            # Configuración de Gradle
   ├── README.md                               # Documentación del proyecto
-
+```
 ## Descarga
 Para clonar está aplicación desde la linea de comando:
 
