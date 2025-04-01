@@ -34,7 +34,7 @@ De aca en adelante encontraras las partes del readme con un pequeño ejemplo den
   </a>
 </p>
 
-Redacta aca una breve descripcion del proyecto...
+Este proyecto realiza pruebas de performance utilizando Karate junto con Gatling para simular carga y medir el rendimiento de un servicio.
 
 <p align="center">
   <a href="#topicos">Topicos</a> •
@@ -49,11 +49,10 @@ Redacta aca una breve descripcion del proyecto...
 
 ## Topicos
 
-* Java
-* karate-gatling
-* Cucumber
-* Serenity
-* Selenium
+* Karate
+* Gatling
+* Gradle
+* Scala
 
 ## Tecnologias
 ### This project required:
@@ -62,36 +61,26 @@ Redacta aca una breve descripcion del proyecto...
 - [Serenity] version 4
 - [Gradle] last version
 
-Nota: 
-*   Se requiere Selenium posterior a la version 4.11 para la descarga automatica de algunos drivers de los navegadores
-    La version de Serenity implementada (4.0.0) ya incluye Selenium 4.12 lo cual soporta los navegadores a Octubre del 2023
-    si el proyecto presenta problemas relacionados a las version del driver descargado de forma automatica y la version de su 
-    navegador vale la pena revisar que este trabajando con versiones recientes de Serenity y checkear las versiones de Selenium
-    incluidas en dicha version de Serenity
-*   Con Selenium Manager incluido en Serenity 4.0.0 ya no se requiere WebDriverManager de Boni Garcia, razon por la cual ya
-    serenity no lo incluye dentro de sus dependencias
 
-## Consideraciones
-- Para hacer uso de la la utilidad de Base de Datos es importante 
-        que se instacie una Base de datos y se configura en el archivo de configuración ubicado en:
-
-            ./src/main/resources/configs/congig.properties
-
-        En las dependencias del proyecto esta agregada la dependencia del driver de MySQL, si no 
-        desea realizar mayores ajustes respecto al motor de BD use MySQL. Si desea usar otro motor, 
-        adiciones la dependencia del driver al build.gradle y configure este driver como observa 
-        se realizo para MySQL en: 
-    
-            ./src/main/java/utils/ConectionBD.java
-        
-        Nota: Algunos motores de BD no requieren agregar la dependencia del driver como Oracle o MSserver
+## Estructura del Proyecto
+  ├── src/
+  │   ├── test/
+  │   │   ├── java/
+  │   │   │   ├── performance/               # Runner de pruebas de performance
+  │   │   │   ├── karate/                    # Pruebas en Karate
+  │   │   │   │   ├── config.feature         # Carga de configuraciones
+  │   │   │   │   ├── test.feature           # Prueba de API
+  │   │   ├── resources/
+  │   │   │   ├── karate-config.js           # Archivo de configuración global
+  ├── build.gradle                            # Configuración de Gradle
+  ├── README.md                               # Documentación del proyecto
 
 ## Descarga
 Para clonar está aplicación desde la linea de comando:
 
 ```bash
-git clone https://github.com/somospragma/qa-transversal-proyecto-base-manejo-base-de-datos-java
-cd qa-transversal-proyecto-base-manejo-base-de-datos-java
+git clone https://github.com/somospragma/qa-performance-karate-gatling
+cd qa-performance-karate-gatling
 git remote remove origin
 git remote add origin URL_DE_TU_NUEVO_REPOSITORIO
 git push -u origin master
@@ -100,71 +89,53 @@ Nota: Asegúrate de reemplazar URL_DE_TU_NUEVO_REPOSITORIO con la URL del reposi
 
 Puedes descargar el proyecto en el enlace [download](https://github.com/somospragma/qa-transversal-proyecto-base-manejo-base-de-datos-java) 
 
+## Configuración
+
+El archivo karate-config.js contiene las configuraciones del entorno:
+```
+function() {
+    var config = {
+        urlBaseAuth: '(variable)',
+        urlBase: '(variable)',
+        rampUsers: '(variable)',
+        during: '(variable)'
+    };
+    return config;
+}
+```
 ## Instalación y ejecución
 
-Para ejecutar está aplicación, necesitas [Gradle](https://gradle.org/install) and [Java JDK](https://www.oracle.com/java/technologies/downloads/) instalados en tu equipo, ten en cuenta que tu IDE puede gestionar la instalación de estos dos requerimientos. Desde la linea de comando:
+Para ejecutar está aplicación, necesitas [Gradle](https://gradle.org/install) instalado en tu equipo, ten en cuenta que tu IDE puede gestionar la instalación de estos dos requerimientos. Desde la linea de comando:
 
 ```
 gradle clean build
 ```
 
-##  🛠️ Run tests Chrome gradle:
+##  🛠️ Run tests:
+Para ejecutar las pruebas de carga, usa el siguiente comando:
+
+gradle gatlingRun
+
 ```
-gradle clean test -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test --info --stacktrace --tests "ruta.nameRunner" -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test -Dcucumber.options="--tags @someTag" -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test -Dcucumber.options="--tags '@someTag or @someTag'" -Dcontext=chrome -Dwebdriver.driver=chrome
+gradle gatlingRun
 ```
 
 Nota:
 
-*   Si ejecuta en la consola de gradle no debe usar comillas simples '...' para encerrar '-Dwebdriver.driver=chrome'
-*   Si ejecuta en la consola estándar de la máquina quizás si deba utilizar '...' en las porciones del comando que incluyan puntos
-*   Con "./gradlew test ..." ejecuta el gradle compilado del proyecto
-*   Con "gradle test ..." ejecuta el gradle de su maquina, el configurado en las variables de entorno de su sistema operativo
+*   Esto ejecutará el PerformanceTestRunner.java, el cual define la simulación de carga utilizando los escenarios de Karate.
 
+## Reportes
 
-### ejemplo
+Los reportes de las pruebas se generan en:
 ```
-./gradlew clean test --info --stacktrace --tests "co.com.pragma.runners.CompareImageRunner" -Dcontext=chrome '-Dwebdriver.driver=chrome'
-./gradlew clean test --info --stacktrace --tests "co.com.pragma.runners.LoginRunner" -Dcontext=chrome '-Dwebdriver.driver=chrome'
+/build/reports/gatling/
 ```
-
-
-##  🛠️ Run tests Firefox gradle:
-```
-./gradlew clean test -Dcontext=firefox '-Dwebdriver.driver=firefox'
-./gradlew test --tests "runners.RunnerTags" '-Dcontext=firefox -Dwebdriver.driver=firefox'
-```
-### ejemplo
-```
-./gradlew clean test --info --stacktrace --tests "runners.RunnerTags" '-Dcontext=firefox -Dwebdriver.driver=firefox'
-```
-
-## **Run tests in different environments:**
-```
-gradle command... -Denvironment=defaul
-gradle command... -Denvironment=dev
-gradle command... -Denvironment=qa
-gradle command... -Denvironment=prod
-```
-### Note: 
-    - The default environment will be used if no other value is provided
-    - Could modify the environment urls in .../test/resources/serenity.conf
-
-
-## **Run tests in different browser:**
-```
-gradle command... -Dwebdriver.driver=chrome
-gradle command... -Dwebdriver.driver=firefox
-gradle command... -Dwebdriver.driver=edge
-```
-
+Se puede acceder a un resumen de las pruebas ejecutadas con detalles de tiempos de respuesta y número de peticiones por segundo.
 
 ## Autores
 
 
-| [<img src="https://gitlab.com/uploads/-/system/user/avatar/13437423/avatar.png?width=400" width=115><br><sub>Mauro L. Ibarra P.</sub>](https://gitlab.com/mauro.ibarrap) <br/> | [<img src="https://secure.gravatar.com/avatar/23b2db02403d79ebd356e8e8356758ec?s=192&d=identicon" width=115><br><sub>Otro autor</sub>](https://gitlab.com/) | 
+| [<img src="https://gitlab.com/uploads/-/system/user/avatar/13437423/avatar.png?width=400" width=115><br><sub>Mauro L. Ibarra P.</sub>](https://gitlab.com/mauro.ibarrap) <br/> | [<img src="https://secure.gravatar.com/avatar/23b2db02403d79ebd356e8e8356758ec?s=192&d=identicon" width=115><br><sub>Otro autor</sub>](https://github.com/CristianMillanPragma) | 
 :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 
 
