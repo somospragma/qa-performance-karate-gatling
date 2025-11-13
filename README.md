@@ -73,8 +73,6 @@ Este proyecto realiza pruebas de performance utilizando Karate junto con Gatling
   │   │   │   ├── karate-config.js           # Archivo de configuración global
   ├── build.gradle                            # Configuración de Gradle
   ├── README.md                               # Documentación del proyecto
-
-
 ```
 ## Descarga
 Para clonar está aplicación desde la linea de comando:
