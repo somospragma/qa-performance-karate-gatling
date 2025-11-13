@@ -3,7 +3,7 @@ function() {
         urlBaseAuth: '(variable)',
         urlBase : '(variable)',
         rampUsers : '(variable)',
-        during: '(variable'
+        during: '(variable)'
     };
     return config;
 }

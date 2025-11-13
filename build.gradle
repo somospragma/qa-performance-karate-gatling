@@ -3,17 +3,15 @@ plugins {
 }
 
 ext {
-    karateVersion = '1.5.0'
+    karateVersion = '1.5.1'
 }
 
 dependencies {
     testImplementation "io.karatelabs:karate-gatling:${karateVersion}"
-//    testImplementation 'com.intuit.karate:karate-junit5:1.5.0'
 }
 
 repositories {
     mavenCentral()
-    // mavenLocal()
 }
 
 test {
@@ -35,12 +33,12 @@ sourceSets {
     }
 }
 
-task cleanGatlingReports(type: Delete){
+tasks.register('cleanGatlingReports', Delete) {
     delete "${buildDir}/reports/gatling"
 }
 
 // to run, type: "gradle gatling"
-task gatlingRun(type: JavaExec) {
+tasks.register('gatlingRun', JavaExec) {
     group = 'Web Tests'
     description = 'Run Gatling Tests'
     new File("${buildDir}/reports/gatling").mkdirs()
