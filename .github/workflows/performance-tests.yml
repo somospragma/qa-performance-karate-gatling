@@ -22,31 +22,22 @@ jobs:
         java-version: '20'
         distribution: 'corretto'
 
-    - name: Make gradlew executable
+    - name: Convert line endings and setup gradlew
       run: |
-        echo "📂 Current directory contents:"
-        ls -la
-        echo ""
-        echo "🔍 Looking for gradlew file:"
-        if [ -f "./gradlew" ]; then
-          echo "✅ gradlew found"
-          ls -la gradlew
-          chmod +x gradlew
-          echo "✅ Execute permission granted"
-          ls -la gradlew
-        else
-          echo "❌ gradlew not found"
-          echo "Files in current directory:"
-          ls -la
-          exit 1
-        fi
+        echo "🔧 Converting gradlew line endings from Windows to Unix..."
+        # Convertir CRLF a LF
+        sed -i 's/\r$//' gradlew
+        # Dar permisos de ejecución
+        chmod +x gradlew
+        echo "✅ gradlew ready for execution"
+        ls -la gradlew
 
     - name: Build project
-      run: bash gradlew clean build
-    
+      run: ./gradlew clean build
+
     - name: Run performance tests
-      run: bash gradlew gatlingRun
-    
+      run: ./gradlew gatlingRun
+
     - name: Upload reports
       uses: actions/upload-artifact@v4
       if: always()
