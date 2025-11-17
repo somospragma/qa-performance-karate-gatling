@@ -29,6 +29,12 @@ public class PerformanceTestRunner extends Simulation {
         Map<String, Object> params = Runner.runFeature("classpath:karate/config.feature", null, true);
         String rampUsers = params.get("rampUsers").toString();
         String during = params.get("during").toString();
+        
+        // Obtener parámetros assertions desde configuración
+        String responseTimeMax = params.get("responseTimeMax").toString();
+        String errorRateMax = params.get("errorRateMax").toString();
+        String requestsPerSecMin = params.get("requestsPerSecMin").toString();
+        String successfulRequestsMin = params.get("successfulRequestsMin").toString();
 
         // Define el escenario que ejecuta tu feature, se puedene definir más escenarios si es necesario
         ScenarioBuilder posts = scenario("test get posts").exec(karateFeature("classpath:karate/testPosts.feature","@posts"));
@@ -43,10 +49,10 @@ public class PerformanceTestRunner extends Simulation {
                 users.injectOpen(rampUsers(Integer.parseInt(rampUsers)).during(Integer.parseInt(during)),
                         rampUsersPerSec(Integer.parseInt(rampUsers)).to(20).during(Integer.parseInt(during))).protocols(protocol)
         ).assertions(
-                forAll().requestsPerSec().around(6.0,11.0),
-                forAll().failedRequests().percent().lte(5.0),
-                forAll().responseTime().max().lt(1500),
-                forAll().successfulRequests().count().gte(100L)
+                forAll().requestsPerSec().gte(Double.parseDouble(requestsPerSecMin)),
+                forAll().failedRequests().percent().lte(Double.parseDouble(errorRateMax)),
+                forAll().responseTime().max().lt(Integer.parseInt(responseTimeMax)),
+                forAll().successfulRequests().count().gte(Long.parseLong(successfulRequestsMin))
         );
     }
 }

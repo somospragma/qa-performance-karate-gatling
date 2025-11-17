@@ -1,0 +1,40 @@
+name: Basic CI - Performance Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup JDK 20
+      uses: actions/setup-java@v4
+      with:
+        java-version: '20'
+        distribution: 'corretto'
+    
+    # Dar permisos de ejecución al Gradle Wrapper en Ubuntu - sin esto falla con "Permission denied"
+    - name: Make gradlew executable
+      run: chmod +x gradlew
+    
+    - name: Build project
+      run: ./gradlew clean build
+    
+    - name: Run performance tests
+      run: ./gradlew gatlingRun
+    
+    - name: Upload reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: performance-reports
+        path: build/reports/gatling/

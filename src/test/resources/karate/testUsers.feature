@@ -3,8 +3,8 @@ Feature: as a quality analyst,
   in the system to validate their existence.
 
   Background:
-    * url 'https://jsonplaceholder.typicode.com'
-    * path '/users'
+    * url urlBase
+    * path endpoints.users
 
   @users
   @getUsers

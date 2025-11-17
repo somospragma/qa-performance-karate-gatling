@@ -3,18 +3,18 @@ Feature: As a quality analyst,
   in the system to validate their existence.
 
   Background:
-    * url 'https://jsonplaceholder.typicode.com'
+    * url urlBase
 
   @posts
   Scenario: get posts
 
-    Given path '/posts'
+    Given path endpoints.posts
     When method get
     Then status 200
 
   @postComments
   Scenario: get posts comments
 
-    Given path '/posts/1/comments'
+    Given path endpoints.comments
     When method get
     Then status 200

@@ -17,6 +17,14 @@ repositories {
 test {
     systemProperty "karate.options", System.properties.getProperty("karate.options")
     systemProperty "karate.env", System.properties.getProperty("karate.env")
+    systemProperty "rampUsers", System.properties.getProperty("rampUsers")
+    systemProperty "during", System.properties.getProperty("during")
+    systemProperty "responseTimeMax", System.properties.getProperty("responseTimeMax")
+    systemProperty "errorRateMax", System.properties.getProperty("errorRateMax")
+    systemProperty "requestsPerSecMin", System.properties.getProperty("requestsPerSecMin")
+    systemProperty "successfulRequestsMin", System.properties.getProperty("successfulRequestsMin")
+    systemProperty "urlBase", System.properties.getProperty("urlBase")
+    
     outputs.upToDateWhen { false }
 }
 
@@ -37,7 +45,7 @@ tasks.register('cleanGatlingReports', Delete) {
     delete "${buildDir}/reports/gatling"
 }
 
-// to run, type: "gradle gatling"
+// to run, type: "gradle gatlingRun"
 tasks.register('gatlingRun', JavaExec) {
     group = 'Web Tests'
     description = 'Run Gatling Tests'
