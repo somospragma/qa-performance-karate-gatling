@@ -23,7 +23,23 @@ jobs:
         distribution: 'corretto'
 
     - name: Make gradlew executable
-      run: chmod +x gradlew
+      run: |
+        echo "📂 Current directory contents:"
+        ls -la
+        echo ""
+        echo "🔍 Looking for gradlew file:"
+        if [ -f "./gradlew" ]; then
+          echo "✅ gradlew found"
+          ls -la gradlew
+          chmod +x gradlew
+          echo "✅ Execute permission granted"
+          ls -la gradlew
+        else
+          echo "❌ gradlew not found"
+          echo "Files in current directory:"
+          ls -la
+          exit 1
+        fi
 
     - name: Build project
       run: ./gradlew clean build
