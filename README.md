@@ -55,8 +55,8 @@ Este proyecto realiza pruebas de performance utilizando Karate junto con Gatling
 
 ## Tecnologias
 ### This project required:
-- [JDK java] version 16
-- [Karate] Version 1.5.0
+- [JDK java] version 17+
+- [Karate] Version 1.5.1
 - [Gradle] last version
 
 
@@ -68,11 +68,12 @@ Este proyecto realiza pruebas de performance utilizando Karate junto con Gatling
   │   │   │   ├── performance/               # Runner de pruebas de performance
   │   │   │   ├── karate/                    # Pruebas en Karate
   │   │   │   │   ├── config.feature         # Carga de configuraciones
-  │   │   │   │   ├── test.feature           # Prueba de API
+  │   │   │   │   ├── testPost.feature       # Prueba de API
+  │   │   │   │   ├── testUsers.feature      # Prueba de API
   │   │   ├── resources/
   │   │   │   ├── karate-config.js           # Archivo de configuración global
-  ├── build.gradle                            # Configuración de Gradle
-  ├── README.md                               # Documentación del proyecto
+  ├── build.gradle                           # Configuración de Gradle
+  ├── README.md                              # Documentación del proyecto
 ```
 ## Descarga
 Para clonar está aplicación desde la linea de comando:
