@@ -21,11 +21,7 @@ jobs:
       with:
         java-version: '20'
         distribution: 'corretto'
-    
-    # Dar permisos de ejecución al Gradle Wrapper en Ubuntu - sin esto falla con "Permission denied"
-    - name: Make gradlew executable
-      run: chmod +x gradlew
-    
+
     - name: Build project
       run: ./gradlew clean build
     
