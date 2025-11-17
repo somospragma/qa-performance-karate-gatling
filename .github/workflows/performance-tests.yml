@@ -25,7 +25,7 @@ jobs:
     - name: Convert line endings and setup gradlew
       run: |
         echo "🔧 Converting gradlew line endings from Windows to Unix..."
-        # Convertir CRLF a LF
+        # Convertir CRLF (Windows) a LF (Linux) para evitar errores de $'\r': command not found
         sed -i 's/\r$//' gradlew
         # Dar permisos de ejecución
         chmod +x gradlew
