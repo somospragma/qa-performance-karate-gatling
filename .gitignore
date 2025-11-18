@@ -97,7 +97,6 @@ gatling-results-*/
 
 # Performance test logs and reports
 logs/
-reports/
 test-output/
 
 # Environment specific files (optional - uncomment if using sensitive data)

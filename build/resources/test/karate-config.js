@@ -1,9 +1,8 @@
 function fn() {
-    // Obtener el ambiente desde variables del sistema
+
     var env = karate.env || 'prod';
     karate.log('Karate environment:', env);
     
-    // Cargar configuración específica del ambiente
     var config;
     try {
         if (env === 'qa') {
@@ -15,7 +14,7 @@ function fn() {
         }
     } catch (e) {
         karate.log('Error loading environment config, using defaults:', e.message);
-        // Configuración de fallback
+        
         config = {
             environment: 'dev',
             urlBase: 'https://jsonplaceholder.typicode.com',
@@ -45,20 +44,17 @@ function fn() {
             }
         };
         
-        // Configurar karate con valores por defecto
+        
         karate.configure('connectTimeout', 5000);
         karate.configure('readTimeout', 15000);
     }
     
-    // Configuraciones globales adicionales
     karate.configure('ssl', true);
     karate.configure('charset', 'utf-8');
     
-    // Log de la configuración actual
     karate.log('Configuration loaded for environment:', config.environment);
     karate.log('Base URL:', config.urlBase);
     
-    // Exponer variables globalmente
     config.urlBase = config.urlBase;
     config.endpoints = config.endpoints;
     config.performance = config.performance;
