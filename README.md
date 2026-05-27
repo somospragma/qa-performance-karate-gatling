@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">Framework de pruebas de performance siguiendo las reglas de calidad transversales de <a href="https://github.com/karatelabs/karate" target="_blank">Pragma</a>.</h4>
+<h4 align="center">Framework de pruebas de performance siguiendo las reglas de calidad transversales de  <a href="https://github.com/karatelabs/karate" target="_blank">Pragma</a>.</h4>
 
 <p align="center">
   <a href="https://www.oracle.com/java/technologies/javase-jdk20-downloads.html">
