@@ -56,7 +56,9 @@ tasks.register('gatlingRun', JavaExec) {
     description = 'Run Gatling Tests'
     new File("${buildDir}/reports/gatling").mkdirs()
     classpath = sourceSets.test.runtimeClasspath
-    main = "io.gatling.app.Gatling"
+    mainClass = "io.gatling.app.Gatling"
+    // Ejecuta con el mismo toolchain (Java 21) con el que se compilan las simulaciones.
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
     args = [
             // change this to suit your simulation entry-point
             '-s', 'performance.PerformanceTestRunner',
