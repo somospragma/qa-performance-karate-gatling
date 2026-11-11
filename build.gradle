@@ -2,8 +2,14 @@ plugins {
     id 'scala'
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 ext {
-    karateVersion = '1.5.1'
+    karateVersion = '1.5.2'
 }
 
 dependencies {
@@ -24,7 +30,6 @@ test {
     systemProperty "requestsPerSecMin", System.properties.getProperty("requestsPerSecMin")
     systemProperty "successfulRequestsMin", System.properties.getProperty("successfulRequestsMin")
     systemProperty "urlBase", System.properties.getProperty("urlBase")
-    
     outputs.upToDateWhen { false }
 }
 
@@ -51,7 +56,9 @@ tasks.register('gatlingRun', JavaExec) {
     description = 'Run Gatling Tests'
     new File("${buildDir}/reports/gatling").mkdirs()
     classpath = sourceSets.test.runtimeClasspath
-    main = "io.gatling.app.Gatling"
+    mainClass = "io.gatling.app.Gatling"
+    // Ejecuta con el mismo toolchain (Java 21) con el que se compilan las simulaciones.
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
     args = [
             // change this to suit your simulation entry-point
             '-s', 'performance.PerformanceTestRunner',
